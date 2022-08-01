@@ -8,6 +8,10 @@
 \usepackage{otf}
 \usepackage[top=30truemm,bottom=30truemm,left=25truemm,right=25truemm]{geometry}
 
+\def\vector#1{\mbox{\boldmath $#1$}}
+\newcommand{\argmin}{\mathop{\rm argmin}\limits}
+\newcommand{\qubit}[1]{\vert{#1}\rangle}
+
 
 \begin{document}
 
@@ -20,25 +24,66 @@
     \item[$\spadesuit$Q22]
         \begin{enumerate}
 
-        \item[(1)] When the input state to the quantum circuit represented by (110) is $|11\rangle$, 
-        the results for a step-by-step calculation are as follows.
-        \begin{align*}
-            &|\Psi_{\mathrm{in}}\rangle = |11\rangle\\
-            &|\Psi_{\mathrm{mid}}\rangle = \left(\hat{H}|1\rangle\right)
-        \end{align*}
+        \item[(1)] When the input state to the quantum circuit represented by (110) is $\qubit{11}$, 
+            the results for a step-by-step calculation are as follows.
+            \begin{align}
+                &\qubit{\Psi_{\mathrm{in}}} = \qubit{11}\\
+                &\qubit{\Psi_{\mathrm{mid}}} = \left(\hat{H}\qubit{1}\right)\otimes\qubit{1}\\
+                &\qubit{\Psi_{\mathrm{out}}} = \frac{\qubit{01}-\qubit{10}}{\sqrt{2}}
+            \end{align}
 
-
-        
+        \item[(2)] Applying the CNOT gate to a single state $\qubit{S}=(\qubit{01}-\qubit{10})/\sqrt{2}$ changes it to
+            \begin{equation}
+                \frac{\qubit{01}-\qubit{11}}{\sqrt{2}}.
+            \end{equation}
+            This can be rewritten as a separatable state
+            \begin{equation}
+                \left(\frac{\qubit{0}-\qubit{1}}{\sqrt{2}}\right)\otimes\qubit{1}
+            \end{equation} 
+            and proved to be not entangled.
+        \item[(3)] For example, consider the superposition of $\qubit{\Phi_+}$ and $\qubit{\Psi_+}$.
+            If $c_0$ and $c_1$ are complex, the superposition of $\qubit{\Phi_+}$ and $\qubit{\Psi_+}$ can be written as
+            \begin{equation}
+                c_0\qubit{\Phi_+} + c_1\qubit{\Psi_+}.
+            \end{equation}
+            If $c_0=c_1$, then the above equation becomes
+            \begin{align}
+                c_0(\qubit{\Phi_+} + \qubit{\Psi_+}) &= c_0\left(\frac{\qubit{00}+\qubit{11}+\qubit{01}+\qubit{10}}{\sqrt{2}}\right)\nonumber\\
+                &=c_0\left(\frac{\qubit{00}+\qubit{10}+\qubit{01}+\qubit{11}}{\sqrt{2}}\right)\nonumber\\
+                &=c_0\left(\left(\frac{\qubit{0}+\qubit{1}}{\sqrt{2}}\right)\otimes\qubit{0}+\left(\frac{\qubit{0}+\qubit{1}}{\sqrt{2}}\right)\otimes\qubit{1}\right)\nonumber\\
+                &=c_0\left(\frac{\qubit{0}+\qubit{1}}{\sqrt{2}}\right)\otimes(\qubit{0}+\qubit{1}),
+            \end{align}
+            which is the not entangled state.
+            Thus, it is shown that even superposition of entangled states may not result in an entangled state.
 
         \end{enumerate}
-    \item[$\spadesuit$Q23]
+    \item[$\spadesuit$Q23] 
+        \begin{enumerate}
+
+        \item[(1)] When the initial state of qubit A is $\qubit{\psi}+c_0\qubit{0}+c_1\qubit{1}$, 
+            the three-qubit state before the process denoted by $E$ is 
+            \begin{equation}
+                c_0\qubit{001}+c_1\qubit{110}.
+            \end{equation}
+
+        \item[(2)] When the three-qubit state is preserved by the proccess $E$, 
+            the final state of qubit A is $c_0\qubit{0}+c_1\qubit{1}$.
+
+        \item[(3)] the final three-qubit state : $c_0\qubit{110}+c_1\qubit{010}$\\
+                the final qubit A state : $c_0\qubit{1}+c_1\qubit{0}$
+
+        \item[(4)] the final three-qubit state : $c_0\qubit{011}+c_1\qubit{011}$\\
+                the final qubit A state : $c_0\qubit{0}+c_1\qubit{0}$
+            
+        \item[(5)] the final three-qubit state : $c_0\qubit{000}+c_1\qubit{100}$\\
+                the final qubit A state : $c_0\qubit{0}+c_1\qubit{1}$
+
+        \item[(6)] the final three-qubit state : $c_0\qubit{010}+c_1\qubit{110}$\\
+                the final qubit A state : $c_0\qubit{0}+c_1\qubit{1}$
+
+        \end{enumerate}
     \item[$\spadesuit$Q24]  
     
 \end{itemize}
-
-
-
-
-
 
 \end{document}
